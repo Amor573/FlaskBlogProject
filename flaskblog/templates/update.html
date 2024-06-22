@@ -1,0 +1,84 @@
+{% extends 'layout.html' %}
+
+
+{% block content %}
+
+
+<div class="container">
+
+
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <h1>Welcome to Update Post</h1>
+
+
+    <form action=""  method="POST">
+
+        {{ form.hidden_tag() }}
+
+         <legend class="border-bottom mb-4">Update Post</legend>
+         <div class="form-group">
+              {{ form.title.label(class="form-control-label") }}
+
+             {% if form.title.errors %}
+
+            {{ form.title(class="form-control form-control-lg is-invalid") }}
+
+            <div class="invalid-feedback">
+
+                {% for error in form.title.errors %}
+
+                <span>{{error}}</span>
+
+                {% endfor %}
+
+
+            </div>
+
+            {% else %}
+            {{ form.title(class="form-control form-control-lg") }}
+
+            {% endif %}
+
+        </div>
+
+        <div class="form-group">
+              {{ form.content.label(class="form-control-label") }}
+
+             {% if form.content.errors %}
+
+            {{ form.content(class="form-control form-control-lg is-invalid") }}
+
+            <div class="invalid-feedback">
+
+                {% for error in form.content.errors %}
+
+                <span>{{error}}</span>
+
+                {% endfor %}
+
+
+            </div>
+
+            {% else %}
+            {{ form.content(class="form-control form-control-lg") }}
+
+            {% endif %}
+
+        </div><br>
+
+        <div class="form-group">
+              {{ form.submit(class="btn btn-primary") }}
+        </div>
+
+    </form>
+
+
+
+    </div>
+  </div>
+</div>
+
+
+
+{% endblock content %}

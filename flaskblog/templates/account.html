@@ -1,0 +1,105 @@
+{% extends 'layout.html' %}
+
+
+{% block content %}
+
+
+<div class="container">
+
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+        <br>
+
+        <img class="rounded-circle" src="{{ image_file }}" height="150", width="200">
+        <h2>{{ current_user.username }}</h2>
+         <p>{{ current_user.email }}</p> <br>
+
+
+
+        <form action="" method="POST" enctype="multipart/form-data">
+
+        {{ form.hidden_tag() }}
+
+        <div class="form-group">
+              {{ form.username.label(class="form-control-label") }}
+
+            {% if form.username.errors %}
+
+            {{ form.username(class="form-control form-control-lg is-invalid") }}
+
+            <div class="invalid-feedback">
+
+                {% for error in form.username.errors %}
+
+                <span>{{error}}</span>
+
+                {% endfor %}
+
+
+            </div>
+
+            {% else %}
+            {{ form.username(class="form-control form-control-lg") }}
+
+            {% endif %}
+
+            </div>
+
+         <div class="form-group">
+              {{ form.email.label(class="form-control-label") }}
+
+             {% if form.email.errors %}
+
+            {{ form.email(class="form-control form-control-lg is-invalid") }}
+
+            <div class="invalid-feedback">
+
+                {% for error in form.email.errors %}
+
+                <span>{{error}}</span>
+
+                {% endfor %}
+
+
+            </div>
+
+            {% else %}
+            {{ form.email(class="form-control form-control-lg") }}
+
+            {% endif %}
+
+        </div>
+
+        <div class="form-group">
+              {{ form.picture.label() }}
+            {{ form.picture(class="form-control form-control-file") }}
+
+             {% if form.picture.errors %}
+
+                    {% for error in form.picture.errors %}
+                        <span class="btn btn-danger">{{ error }}</span><br>
+
+                    {% endfor %}
+
+            {% endif %}
+
+        </div><br>
+
+
+        <div class="form-group">
+              {{ form.submit(class="btn btn-primary") }}
+        </div>
+
+    </form>
+
+
+
+
+
+    </div>
+  </div>
+</div>
+
+
+
+{% endblock content %}

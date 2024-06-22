@@ -1,0 +1,56 @@
+{% extends 'layout.html' %}
+
+
+{% block content %}
+
+
+
+<div class="container">
+
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+
+        <h2>Welcome to my home page</h2><br>
+
+        {% for post in posts.items %}
+
+        <hr>
+
+        <img class="rounded-circle" src="{{ url_for('static', filename='profile_pics/'+ post.author.image_file) }}" height="150", width="200">
+        <legend>{{ post.author.username }}</legend>
+        <a href="{{ url_for('post', id = post.id)}}"><h2 class="btn btn-primary">{{ post.title }}</h2></a>
+        <h4>{{ post.content }}</h4><br>
+
+        </hr>
+
+        {% endfor %}
+
+        {% for page_num in posts.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
+
+        {% if page_num  %}
+
+                {% if posts.page == page_num  %}
+                    <a class="btn btn-info mb-4" href="{{ url_for('home', page=page_num) }}">{{ page_num }}</a>
+
+                {% else %}
+                     <a class="btn btn-outline-info mb-4" href="{{ url_for('home', page=page_num) }}">{{ page_num }}</a>
+
+                {% endif %}
+
+        {% else %}
+           ...
+        {% endif %}
+
+
+        {% endfor %}
+
+
+
+
+    </div>
+  </div>
+</div>
+
+
+
+{% endblock content %}
